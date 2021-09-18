@@ -108,38 +108,6 @@
         </main>
     </div>
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      selectable: true,
+@yield('javascript')
 
-      events: [
-                    {
-                        id: '<?php echo'1';?>',
-                        title: '<?php echo'ccc1';?>',
-                        start: '2021-09-01',
-                        url: '/event/1'
-                    },
-                    {
-                        id: '2',
-                        title: 'event2',
-                        start: '2021-09-05',
-                        url: '#'
-                    },
-                    {
-                        id: '3',
-                        title: 'event3',
-                        start: '2021-09-07',
-                        end: '2021-09-11', // 2021-01-10 23:59:59で終了
-                        url: '#'
-                    }
-                ],
-      
-          
-        });
-    calendar.render();
-  });
-</script>
 </html>

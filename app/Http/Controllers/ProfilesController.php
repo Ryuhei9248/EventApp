@@ -21,11 +21,14 @@ class ProfilesController extends Controller
             }else{
                 $following == true;
             }
+            
         }else{
             $following = true;
         }
-            
-        return view('profiles/index', compact('user', 'authUser', 'following'));
+        
+        $events = Event::where('user_id', $user->id)->get();
+
+        return view('profiles/index', compact('user', 'authUser', 'following', 'events'));
     }
 
     public function edit(User $user)

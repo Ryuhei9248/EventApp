@@ -82,3 +82,30 @@
 
 @endsection
 
+@section('javascript')
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      selectable: true,
+
+      events: [
+          @foreach($events as $event)
+                    {
+                        id: '{{$event->id}}',
+                        title: '{{$event->title}}',
+                        start: '{{$event->start}}',
+                        url: '/event/{{$event->id}}',
+                        color: '{{$event->color}}'
+                    },
+            @endforeach
+                ],
+      
+          
+        });
+    calendar.render();
+  });
+</script>
+@endsection
