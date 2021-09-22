@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\Event;
 
 class HomeController extends Controller
 {
@@ -27,7 +27,7 @@ class HomeController extends Controller
         $following = auth()->user()->followings->all();
         
         $followingProfile = array_column($following, 'profile_id');
-        $posts = Post::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get();
-        return view('home', compact('posts'));
+        $events = Event::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get();
+        return view('home', compact('events'));
     }
 }

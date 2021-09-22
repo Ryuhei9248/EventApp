@@ -15,7 +15,7 @@
                     
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label">Title</label>
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"  value="{{ old('title') }}" autocomplete="title" autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"  value="{{ old('title') }}" autocomplete="title" autofocus required>
                                         
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
 
                         <div class="row">
                             <label for="image" class="col-md-4 col-form-label">Event Image</label>
-                                <input type="file", class="form-control-file" id="image" name="image">
+                                <input type="file", class="form-control-file" id="image" name="image" required>
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                         
                         <div class="form-group row">
                             <label for="start" class="col-md-4 col-form-label">Start</label>
-                                <input id="start" type="date" class="form-control @error('start') is-invalid @enderror" name="start" autocomplete="start" autofocus>
+                                <input id="start" type="datetime-local" class="form-control @error('start') is-invalid @enderror" name="start" autocomplete="start" autofocus required>
                                 
                                 @error('start')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
 
                         <div class="form-group row">
                             <label for="end" class="col-md-4 col-form-label">End</label>
-                                <input id="end" type="date" class="form-control @error('end') is-invalid @enderror" name="end" autocomplete="end" autofocus>
+                                <input id="end" type="datetime-local" class="form-control @error('end') is-invalid @enderror" name="end" autocomplete="end" autofocus required>
 
                                 @error('end')
                                     <span class="invalid-feedback" role="alert">
@@ -59,8 +59,7 @@
 
                         <div class="form-group row">
                             <label for="details" class="col-md-4 col-form-label">Details</label>
-                                <input id="details" type="text" class="form-control @error('details') is-invalid @enderror" name="details"  value="{{ old('details') }}" autocomplete="details" autofocus>
-                                        
+                                <textarea id="details" type="text" rows="5" class="form-control @error('details') is-invalid @enderror" name="details"  value="{{ old('details') }}" autocomplete="details" autofocus></textarea>        
                                 @error('details')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -98,3 +97,4 @@
         </form>
 </div>
 @endsection
+

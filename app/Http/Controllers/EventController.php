@@ -6,16 +6,31 @@ use Intervention\Image\Facades\Image;
 use App\User;
 use App\Event;
 use Illuminate\Http\Request;
-use App\Http\Resources\CalendarResource;
+
 
 class EventController extends Controller
 {
-    public function index()
+
+    public function __construct()
     {
-        return CalendarResource::collection(Event::where('user_id', '1')->select('id','title', 'start','end','color')->get());         
+        $this->middleware('auth');
     }
 
-   
+    public function show(Event $event)
+    {
+        $authUser = auth()->user();
+        $event->load('favorites');
+        $defaultFavorite = $event->favorites->where('user_id', $authUser->id)->first();
+        
+        if(empty($defaultFavorite)){
+            $defaultLiked = false;
+        }else{
+            $defaultLiked = true;
+        }
+        //dd($defaultLiked);
+        return view('events.show', compact('event', 'authUser', 'defaultLiked'));
+    }
+
     public function create()
     {
         return view('events.create');
@@ -23,14 +38,16 @@ class EventController extends Controller
 
     public function store()
     {   
+
+        //dd(request()->start);
         $data = request()->validate([
             'title' => 'required',
             'image' => ['image', 'required'],
             'details' => '',
-            'start'=> 'required',
-            'end'=> 'required',
-            'url' =>['url', 'nullable'],
-            'color' => 'required'
+            'start'=> ['required','date_format:Y-m-d H:i:s'],
+            'end'=> ['required','after:start','date_format:Y-m-d H:i:s'],
+            'color' => 'required',
+            'url' =>['url','nullable']            
         ]);
 
 
@@ -48,10 +65,6 @@ class EventController extends Controller
         return redirect('/profile/' . auth()->user()->id);
     }
 
-    public function show(Event $event)
-    {
-        return view('events.show', compact('event'));
-    }
 
     public function delete(Event $event)
     {

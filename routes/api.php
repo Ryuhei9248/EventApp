@@ -17,8 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/post/{post}/like', 'LikeController@like');
-Route::post('/post/{post}/unlike', 'LikeController@unlike');
+Route::post('/event/{event}/favorite', 'FavoriteController@favorite');
+Route::post('/event/{event}/unfavorite', 'FavoriteController@unfavorite');
 
 Route::post('/profile/{profile}/follow', 'followController@follow');
 Route::post('/profile/{profile}/unfollow', 'followController@unfollow');

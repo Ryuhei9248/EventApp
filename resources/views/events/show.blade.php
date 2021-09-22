@@ -5,19 +5,35 @@
 
 <div class="d-flex">  
     <div class="col-3">
-        <img src="{{ $event->user->profile->profileImage()}}" class="rounded-circle w-100 img-thumbnail">
-        <a href="/profile/{{$event->user->id}}">{{$event->user->profile->username}}</a>
+        <a href="/profile/{{$event->user->id}}">
+            <img src="{{ $event->user->profile->profileImage()}}" class="rounded-circle w-100 img-thumbnail">
+            <h5 class=" text-center mt-2">{{$event->user->profile->username}}</h5>
+        </a>
+
+        <favorite
+        :event-id="{{ json_encode($event->id) }}"
+        :user-id="{{ json_encode($authUser->id) }}"
+        :default-Liked="{{ json_encode($defaultLiked) }}"
+        class="mt-2">
+        </favorite>
     </div>
+
     
 
 
     <div class="col-6">
-        <img src="/storage/{{$event->image}}" class="w-100 h-100">
-        イベント名：{{$event->title}}<br>
-        詳細：{{$event->details}}<br>
-        開始日：{{$event->start}}
-        終了日：{{$event->end}}<br>
-        URL : {{$event->url}}
+        <img src="/storage/{{$event->image}}" class="w-75 h-75">
+        <h5>{{$event->title}}</h5>
+        @if($event->start != $event->end)
+        <small>{{$event->start}}~{{$event->end}}</small>
+        @else
+        <small>{{$event->start}}</small>
+        @endif
+        <p>{{$event->details}}</p>
+        
+        @if($event->url)
+        <p>URL : <a href="{{$event->url}}">{{$event->url}}</a></p>
+        @endif
     </div>
 </div>
     

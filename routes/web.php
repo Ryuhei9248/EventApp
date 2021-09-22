@@ -18,31 +18,20 @@ Route::get('/', function () {
 Auth::routes();
 
 
+Route::group(['prefix' => 'profile'], function(){
+    Route::get('{user}', 'ProfilesController@index')->name('profile.show');
+    Route::get('{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+    Route::patch('{user}', 'ProfilesController@update')->name('profile.update');
+});
 
-Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
-Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
-Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
-
-Route::get('/post/create', 'PostController@create')->name('post.create');
-Route::post('/post', 'PostController@store');
-Route::get('/post/{post}','PostController@show');
-Route::get('/post/{post}/delete', 'PostController@delete');
-Route::post('/post/{post}/remove','PostController@remove');
-Route::get('/post/{post}/edit', 'PostController@edit');
-Route::patch('/post/{post}/update', 'PostController@update');
-
-Route::get('/event/create', 'EventController@create')->name('event.create');
-Route::post('/event', 'EventController@store');
-Route::get('/event/{event}', 'EventController@show');
-Route::get('/event/{event}/delete', 'EventController@delete');
-Route::post('/event/{event}/remove','EventController@remove');
-Route::get('/event/{event}/edit', 'EventController@edit');
-Route::patch('/event/{event}/update', 'EventController@update');
-
-Route::get('/index', 'EventController@index');
-
-
-
-
+Route::group(['prefix' => 'event'], function(){
+    Route::get('create', 'EventController@create');
+    Route::post('', 'EventController@store');
+    Route::get('{event}', 'EventController@show');
+    Route::get('{event}/delete', 'EventController@delete');
+    Route::post('{event}/remove','EventController@remove');
+    Route::get('{event}/edit', 'EventController@edit');
+    Route::patch('{event}/update', 'EventController@update');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

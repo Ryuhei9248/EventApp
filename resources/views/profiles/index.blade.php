@@ -26,14 +26,6 @@
                 @endcan
 
             @can('update', $user->profile)
-                    <div>
-                        <a href="/post/create">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                            </svg>
-                            <span>New Post</span>
-                        </a>
-                    </div>
                     <div class="mt-1">
                         <a href="/event/create">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
@@ -69,10 +61,10 @@
     </div>
 <br>
     <div class="row pt-6">
-        @foreach($user->posts as $post)
+        @foreach($user->events as $event)
             <div class="col-4 pb-4">
-                <a href="/post/{{ $post->id }}">
-                    <img src="/storage/{{ $post -> image }}" class="w-100" style="height: 350px">
+                <a href="/event/{{ $event->id }}">
+                    <img src="/storage/{{ $event -> image }}" class="w-100" style="height: 350px">
                 </a>
             </div>
         @endforeach   
@@ -89,14 +81,15 @@
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      selectable: true,
-
+      displayEventTime: false,
+      eventDisplay: 'block',
       events: [
           @foreach($events as $event)
                     {
                         id: '{{$event->id}}',
                         title: '{{$event->title}}',
                         start: '{{$event->start}}',
+                        end: '{{$event->end}}',
                         url: '/event/{{$event->id}}',
                         color: '{{$event->color}}'
                     },
