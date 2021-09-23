@@ -3,26 +3,27 @@
 @section('content')
 <div class="container">
     <div class="justfy-content-center">
-        <div class="d-flex">
-            <div class="col-3">
-                <h3>Followings</h3>
-                <div class="d-flex flex-column overflow-auto mt-4">
-                    <ul class="list-group" style="max-height: 440px">
-                    @foreach($users as $user)
-                    <a class="list-group-item p-2" href="/profile/{{$user->id}}" style="font-size: 1.2rem; max-height: 55px;">
-                        <img src="{{ $user->profileImage()}}" class="rounded-circle" height="30" width="30">
-                        <span class="pl-3">{{$user->username}}</span>
-                    </a>
-                    @endforeach
-                    </ul>
+        <div id="calendar" class="w-50 mx-auto"></div>
+
+        
+        <div class="d-flex mt-5">
+            @foreach($events as $event)
+                <div class="col-3">
+                    <div class="card mb-5">
+                        <a href="/event/{{$event->id}}">
+                            <img src="/storage/{{ $event -> image }}" class="bd-placeholder-img card-img-top" width="50%" height="200">
+                            <h6 class="card-title pl-2 pt-1 mb-0">{{$event->title}}</h6>
+                        </a>
+                        
+                        <a href="/profile/{{$event->user_id}}">
+                            <p class="card-text mb-0 mr-1 text-right">by {{$event->user->profile->username}}</p>
+                        </a>
+                        <p class="card-text text-right mr-1"><small class="text-muted">{{$event->created_at->diffForHumans()}}</small></p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
 
-            <div class="col-8">
-
-                <div id="calendar" class="w-100 mx-auto"></div>
-
-            </div>
+            
         </div>
     </div>
 </div>

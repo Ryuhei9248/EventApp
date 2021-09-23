@@ -56,10 +56,6 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
 
     public function events()
     {
@@ -71,5 +67,9 @@ class User extends Authenticatable
         return $this->hasMany(Follow::class); 
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
     
 }

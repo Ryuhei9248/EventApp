@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Profile;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,10 @@ class HomeController extends Controller
         $following = auth()->user()->followings->all();
         
         $followingProfile = array_column($following, 'profile_id');
-        $events = Event::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get();
-        return view('home', compact('events'));
+
+        $users = Profile::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get();
+        $events = Event::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get(); //profileのidとuser_idは同じであるため
+        
+        return view('home', compact('users','events'));
     }
 }

@@ -26,12 +26,15 @@ Route::group(['prefix' => 'profile'], function(){
 
 Route::group(['prefix' => 'event'], function(){
     Route::get('create', 'EventController@create');
+    Route::get('favorites', 'EventController@index');
     Route::post('', 'EventController@store');
     Route::get('{event}', 'EventController@show');
-    Route::get('{event}/delete', 'EventController@delete');
     Route::post('{event}/remove','EventController@remove');
     Route::get('{event}/edit', 'EventController@edit');
     Route::patch('{event}/update', 'EventController@update');
+    
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/users/search', 'SearchController@search');

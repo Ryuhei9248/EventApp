@@ -6,6 +6,7 @@ use Intervention\Image\Facades\Image;
 use App\User;
 use App\Event;
 use Illuminate\Http\Request;
+use App\Favorite;
 
 
 class EventController extends Controller
@@ -31,6 +32,16 @@ class EventController extends Controller
         return view('events.show', compact('event', 'authUser', 'defaultLiked'));
     }
 
+    public function index()
+    {
+        $favorites = auth()->user()->favorites->all();
+        
+        $favoriteEvents = array_column($favorites, 'event_id');
+        
+        $events = Event::whereIn('id', $favoriteEvents)->orderBy('id', 'desc')->get();
+        return view('events.favorites', compact('events'));
+    }
+
     public function create()
     {
         return view('events.create');
@@ -43,11 +54,11 @@ class EventController extends Controller
         $data = request()->validate([
             'title' => 'required',
             'image' => ['image', 'required'],
+            'start'=> ['required','date_format:Y-m-d\TH:i'],
+            'end'=> ['required','after:start','date_format:Y-m-d\TH:i'],
             'details' => '',
-            'start'=> ['required','date_format:Y-m-d H:i:s'],
-            'end'=> ['required','after:start','date_format:Y-m-d H:i:s'],
-            'color' => 'required',
-            'url' =>['url','nullable']            
+            'url' =>['url','nullable'],
+            'color' => 'required',         
         ]);
 
 
@@ -63,13 +74,6 @@ class EventController extends Controller
         )); 
 
         return redirect('/profile/' . auth()->user()->id);
-    }
-
-
-    public function delete(Event $event)
-    {
-        $this->authorize('delete', $event);
-        return view('events.delete',compact('event'));
     }
 
     public function remove(Event $event)
@@ -93,10 +97,10 @@ class EventController extends Controller
 
         $data = request()->validate([
             'title' => 'required',
-            'image' => ['image', 'required'],
+            'image' => ['image','required'],
+            'start'=> ['date_format:Y-m-d\TH:i', 'required'],
+            'end'=> ['after:start','date_format:Y-m-d\TH:i', 'required'],
             'details' => '',
-            'start'=> 'required',
-            'end'=> 'required',
             'url' =>['url', 'nullable'],
             'color' => 'required'
         ]);

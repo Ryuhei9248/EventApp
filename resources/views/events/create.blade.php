@@ -13,8 +13,8 @@
                             <h1>Add New Event</h1>
                         </div>
                     
-                        <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label">Title</label>
+                        <div class="form-group row w-50">
+                            <label for="title" class="col-md-4 col-form-label ">Title</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"  value="{{ old('title') }}" autocomplete="title" autofocus required>
                                         
                                 @error('title')
@@ -26,7 +26,7 @@
 
                         <div class="row">
                             <label for="image" class="col-md-4 col-form-label">Event Image</label>
-                                <input type="file", class="form-control-file" id="image" name="image" required>
+                                <input type="file" class="form-control-file" id="image" name="image" required>
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -35,8 +35,8 @@
                                 @enderror      
                         </div> 
                         
-                        <div class="form-group row">
-                            <label for="start" class="col-md-4 col-form-label">Start</label>
+                        <div class="form-group row w-25">
+                            <label for="start" class="col-md-4 col-form-label ">Start</label>
                                 <input id="start" type="datetime-local" class="form-control @error('start') is-invalid @enderror" name="start" autocomplete="start" autofocus required>
                                 
                                 @error('start')
@@ -46,7 +46,7 @@
                                 @enderror 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row w-25">
                             <label for="end" class="col-md-4 col-form-label">End</label>
                                 <input id="end" type="datetime-local" class="form-control @error('end') is-invalid @enderror" name="end" autocomplete="end" autofocus required>
 

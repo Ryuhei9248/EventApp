@@ -48,7 +48,7 @@
 
                         <div class="row">
                             <label for="image" class="col-md-4 col-form-label">Profile Image</label>
-                                <input type="file", class="form-control-file" id="image" name="image">
+                                <input type="file" class="form-control-file" id="image" name="image">
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
