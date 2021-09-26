@@ -27,7 +27,7 @@
                         </favorite>
                     </div>
                         
-                    <small class="card-text ml-auto text-muted">{{$event->start->format('m/d H:i')}}~{{$event->end->format('m/d H:i')}}</small>
+                    <small class="card-text ml-auto text-muted">{{ \Carbon\Carbon::parse($event->start)->format('m/d H:i')}}~{{\Carbon\Carbon::parse($event->end)->format('m/d H:i')}}</small>
                     <p class="card-text" style="white-space: pre-wrap;">{{$event->details}}</p>
                     <a href="{{$event->url}}" class="card-link" style="color: skyblue;" id="eventUrl">{{$event->url}}</a>
                     <p class="card-text"><small class="text-muted">{{$event->created_at->diffForHumans()}}</small></p>
