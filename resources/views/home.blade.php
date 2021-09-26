@@ -8,12 +8,19 @@
                 <h3>Followings</h3>
                 <div class="d-flex flex-column overflow-auto mt-4">
                     <ul class="list-group" style="max-height: 440px">
-                    @foreach($users as $user)
-                    <a class="list-group-item p-2" href="/profile/{{$user->id}}" style="font-size: 1.2rem; max-height: 55px;">
-                        <img src="{{ $user->profileImage()}}" class="rounded-circle" height="30" width="30">
-                        <span class="pl-3">{{$user->username}}</span>
-                    </a>
-                    @endforeach
+                    @if(isset($users))
+                        @foreach($users as $user)
+                            <a class="list-group-item p-2" href="/profile/{{$user->id}}" style="font-size: 1.2rem; max-height: 55px;">
+                                <img src="{{ $user->profileImage()}}" class="rounded-circle" height="30" width="30">
+                                <span class="pl-3">{{$user->username}}</span>
+                            </a>
+                        @endforeach
+                        
+                    @else
+                    <div class="list-group-item p-2" style="font-size: 1.2rem; max-height: 55px;">
+                        <p class="text-center m-auto">Not Following Anyone</p>
+                    </div>
+                    @endif
                     </ul>
                 </div>
             </div>
@@ -40,6 +47,7 @@
       displayEventTime: false,
       eventDisplay: 'block',
       events: [
+          @if(isset($events))
           @foreach($events as $event)
                     {
                         id: '{{$event->id}}',
@@ -50,6 +58,7 @@
                         color: '{{$event->color}}',
                     },
             @endforeach
+            @endif
                 ],
       
           

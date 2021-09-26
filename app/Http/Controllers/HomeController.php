@@ -25,13 +25,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $following = auth()->user()->followings->all();
+
+        $followings = auth()->user()->followings->all();
         
-        $followingProfile = array_column($following, 'profile_id');
+        $followingProfile = array_column($followings, 'profile_id');
 
         $users = Profile::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get();
         $events = Event::whereIn('user_id', $followingProfile)->orderBy('id', 'desc')->get(); //profileのidとuser_idは同じであるため
-        
-        return view('home', compact('users','events'));
+
+        if(empty($followings)){
+            return view('home');
+        }else{
+            return view('home', compact('users','events'));
+        }
+
+ 
     }
 }

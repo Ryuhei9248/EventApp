@@ -17,7 +17,7 @@ class SearchController extends Controller
         }
         
         $profiles = Profile::where('username','like', '%'.$keyword.'%')->get();
-        $events = Event::where('title', 'like', '%'.$keyword.'%')->get();
+        $events = Event::where('title', 'like', '%'.$keyword.'%')->orderBy('created_at','desc')->get();
         
         $empty_profiles = $profiles->isEmpty();
         $empty_events = $events->isEmpty();

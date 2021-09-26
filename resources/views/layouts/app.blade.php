@@ -39,14 +39,52 @@
         text-decoration: none;
     }
 
-    /* .list-group {
-        max-height: 440px;
+    .list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: grey;
+    border-color: grey;
     }
 
-    .list-group-item{
-        font-size: 1.2rem;
-        max-height: 55px;
-    } */
+    #deleteBtn:hover {
+        background-color: transparent;
+        color: #9c9c9c;
+    }
+
+    #deleteBtn {
+        border: none;
+        outline: none;
+    }
+
+    #deleteBtn:focus {
+        outline: none;
+        border: none;
+        background-color: transparent;
+    }
+
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+
+    #favBtn {
+        border: none;
+        outline: none;
+    }
+
+    #favBtn:focus {
+        outline: none;
+        border: none;
+        background-color: transparent;
+    }
+
+    #favBtn:hover {
+        background-color: transparent;
+        color: red;
+    }
+
+    #eventUrl:hover {
+        text-decoration: underline;
+    }
 </style>
 <body>
     <div id="app">
@@ -83,7 +121,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"  aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor" class="bi bi-calendar-event mb-1" viewBox="0 0 16 16">
                                 <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
@@ -91,7 +129,7 @@
                                     <span class="caret ml-1">Events</span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="navbarDropdown">
     
                                     <a class="dropdown-item" href="/event/favorites">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">

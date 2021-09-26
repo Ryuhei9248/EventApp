@@ -37767,7 +37767,7 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-outline-light",
-            attrs: { type: "button" },
+            attrs: { type: "button", id: "favBtn" },
             on: {
               click: function($event) {
                 return _vm.like(_vm.eventId)
@@ -37802,7 +37802,7 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-outline-light",
-            attrs: { type: "button" },
+            attrs: { type: "button", id: "favBtn" },
             on: {
               click: function($event) {
                 return _vm.unlike(_vm.eventId)

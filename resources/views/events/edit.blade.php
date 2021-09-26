@@ -60,7 +60,7 @@
 
                         <div class="form-group row">
                             <label for="details" class="col-md-4 col-form-label">Details</label>
-                                <textarea id="details" type="text" rows="5" class="form-control @error('details') is-invalid @enderror" name="details"  value="{{ old('details') ?? $event->details }}" autocomplete="details" autofocus></textarea>
+                                <textarea id="details" type="text" rows="5" class="form-control @error('details') is-invalid @enderror" name="details"   autocomplete="details" autofocus>{{ old('details') ?? $event->details }}</textarea>
                                         
                                 @error('details')
                                     <span class="invalid-feedback" role="alert">

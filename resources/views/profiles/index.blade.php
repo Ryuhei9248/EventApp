@@ -45,7 +45,7 @@
                             <span>New Event</span>
                         </a>
                     </div>
-                @endcan
+            @endcan
         </div>
         
         <div class="col-6">

@@ -5,7 +5,7 @@
     
     <div class="row">
         <div class="col-4">
-            <div class="list-group" id="list-tab" role="tablist">
+            <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="user">Users</a>
             <a class="list-group-item list-group-item-action" id="list-event-list" data-toggle="list" href="#list-event" role="tab" aria-controls="event">Events</a>
             </div>
@@ -28,21 +28,29 @@
                     </div>
                 @endif
             </div>
+
             <div class="tab-pane fade" id="list-event" role="tabpanel" aria-labelledby="list-event-list">
                 <h5>{{$message_event}}</h5>
                 @if(isset($events))
                 <div class="d-flex flex-column overflow-auto mt-4">
                     <ul class="list-group" style="max-height: 600px;">
                         @foreach($events as $event)
-                            <div href="/event/{{$event->id}}" class="list-group-item p-2">
+                            <div class="list-group-item p-2 overflow-hidden" style="max-height: 90px;">
                                 <div class="d-flex">
                                     <img src="/storage/{{$event->image}}" width="75" height="75">
                                     
                                     <div class="d-flex flex-column">
-                                        <a href="/profile/{{$event->user_id}}"><h5 class="pl-2">{{$event->user->profile->username}}</h5></a>
-                                        <p class="pl-2">{{$event->details}}</p>
+                                        
+                                        <a href="/event/{{$event->id}}"><h5 class="pl-2">{{$event->title}}</h5></a>
+                                        
+                                        <p class="pl-2"　style="max-width: 80%;">{{$event->details}}</p>
                                     </div>
-                                        <small class="ml-auto">{{$event->created_at->diffForHumans()}}</small>
+
+                                    <div class="ml-auto d-flex-column">
+                                        <p class="text-right" style="min-width: 100px; position: absolute; top:10px; right: 10px;">by  <a href="/profile/{{$event->user->id}}">{{$event->user->profile->username}}</a></p>
+                                        <p class="text-right small  text-muted mb-0" style="min-width: 70px; position: absolute; bottom: 0; right: 10px;">{{$event->created_at->diffForHumans()}}</p>
+                                    </div>
+                                    
                                     
                                 </div>
                                 
