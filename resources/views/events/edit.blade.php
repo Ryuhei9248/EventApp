@@ -6,7 +6,6 @@
             @csrf
             @method('PATCH')
 
-
             <div class="row">
                 <div class="col-8 offset-2">
                     
@@ -96,6 +95,6 @@
                         </div>
                 </div>
             </div>
-        </form>
+    </form>
 </div>
 @endsection

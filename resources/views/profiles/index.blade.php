@@ -2,27 +2,20 @@
 
 @section('content')
 <div class="container">
-
     <div class="d-flex">
-        
-        
-
-
         <div class="col-3 text-center">
-
             <img src="{{ $user->profile->profileImage()}}" class="rounded-circle w-100 mb-2 img-thumbnail">
-
             <h5>{{$user->profile->username}}</h5>
-            <p>{{$user->profile->description}}</p>
+            <p style="white-space: pre-wrap;">{{$user->profile->description}}</p>
 
             @auth
-            @if($authUser->id != $user->id)
-            <follow
-            :profile-id="{{ json_encode($user->profile->id) }}"
-            :user-id="{{ json_encode($authUser->id) }}"
-            :following="{{ json_encode($following)}}"
-            ></follow>
-            @endif
+                @if($authUser->id != $user->id)
+                    <follow
+                    :profile-id="{{ json_encode($user->profile->id) }}"
+                    :user-id="{{ json_encode($authUser->id) }}"
+                    :following="{{ json_encode($following)}}"
+                    ></follow>
+                @endif
             @endauth
             
             @can('update', $user->profile)
@@ -48,30 +41,10 @@
             @endcan
         </div>
         
-        <div class="col-6">
+        <div class="col-8">
             <div id='calendar'></div>
         </div>
-
-        <div class="col-3">
-        
-        </div>
-                
-                
-        
-
-        
     </div>
-<br>
-    <div class="row pt-6">
-        @foreach($user->events as $event)
-            <div class="col-4 pb-4">
-                <a href="/event/{{ $event->id }}">
-                    <img src="/storage/{{ $event -> image }}" class="w-100" style="height: 350px">
-                </a>
-            </div>
-        @endforeach   
-    </div>
-
 </div>
 
 @endsection

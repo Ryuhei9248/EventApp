@@ -11,11 +11,12 @@
                     @if(isset($users))
                         @foreach($users as $user)
                             <a class="list-group-item p-2" href="/profile/{{$user->id}}" style="font-size: 1.2rem; max-height: 55px;">
-                                <img src="{{ $user->profileImage()}}" class="rounded-circle" height="30" width="30">
-                                <span class="pl-3">{{$user->username}}</span>
+                                <div class="d-flex">
+                                    <img src="{{ $user->profileImage()}}" class="rounded-circle" height="30" width="30">
+                                    <p class="pl-3 mb-0  overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$user->username}}</p>
+                                </div>
                             </a>
                         @endforeach
-                        
                     @else
                     <div class="list-group-item p-2" style="font-size: 1.2rem; max-height: 55px;">
                         <p class="text-center m-auto">Not Following Anyone</p>

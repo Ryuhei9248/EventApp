@@ -46,17 +46,18 @@
     border-color: grey;
     }
 
-    #deleteBtn:hover {
+    #eventBtn:hover {
         background-color: transparent;
         color: #9c9c9c;
     }
 
-    #deleteBtn {
+    #eventBtn {
         border: none;
         outline: none;
+        color: #000000;
     }
 
-    #deleteBtn:focus {
+    #eventBtn:focus {
         outline: none;
         border: none;
         background-color: transparent;
@@ -85,6 +86,14 @@
     #eventUrl:hover {
         text-decoration: underline;
     }
+
+    #resultDetails {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    
 </style>
 <body>
     <div id="app">
@@ -156,7 +165,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
 
-                        <form class="d-flex" action="/users/search" method="post">
+                        <form class="d-flex" action="/search" method="post">
                             @csrf
                             @method('GET')
                                 <input class="form-control me-2" type="search" placeholder="Find User or Event" aria-label="Search" name="keyword">

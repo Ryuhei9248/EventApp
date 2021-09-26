@@ -2,34 +2,34 @@
 
 @section('content')
 <div class="container">
-    <div class="justfy-content-center">
-        <div id="calendar" class="w-50 mx-auto"></div>
-
+    <h1>Favorited Events</h1>
+    <div class="d-flex">
+        <div class="col-7">
+            <div id="calendar" class="mx-auto"></div>
+        </div>
         
-        <div class="d-flex mt-5">
-            @foreach($events as $event)
-                <div class="col-3">
-                    <div class="card mb-5">
-                        <a href="/event/{{$event->id}}">
-                            <img src="/storage/{{ $event -> image }}" class="bd-placeholder-img card-img-top" width="50%" height="200">
-                            <h6 class="card-title pl-2 pt-1 mb-0">{{$event->title}}</h6>
-                        </a>
-                        
-                        <a href="/profile/{{$event->user_id}}">
-                            <p class="card-text mb-0 mr-1 text-right">by {{$event->user->profile->username}}</p>
-                        </a>
-                        <p class="card-text text-right mr-1"><small class="text-muted">{{$event->created_at->diffForHumans()}}</small></p>
+        <div class="col-5 overflow-auto" style="max-height: 500px;">
+            <div class="row mt-2">
+                @foreach($events as $event)
+                    <div class="col-6">
+                        <div class="card mb-3">
+                            <img src="/storage/{{ $event -> image }}" class="bd-placeholder-img card-img-top h-50">
+                            <a href="/event/{{$event->id}}">
+                                <h5 class="card-title pl-2 pt-1 mb-0 overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$event->title}}</h5>
+                            </a>
+                            
+                            <a href="/profile/{{$event->user_id}}">
+                                <p class="card-text mb-0 mr-1 text-right">by {{$event->user->profile->username}}</p>
+                            </a>
+                            <p class="card-text text-right mr-1"><small class="text-muted">{{$event->created_at->diffForHumans()}}</small></p>
+                        </div>
                     </div>
-                </div>
-            @endforeach
-
-            
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
 @endsection
-
-
 
 @section('javascript')
 <script>

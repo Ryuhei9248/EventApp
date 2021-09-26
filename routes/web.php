@@ -37,4 +37,4 @@ Route::group(['prefix' => 'event'], function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/users/search', 'SearchController@search');
+Route::get('/search', 'SearchController@search');
