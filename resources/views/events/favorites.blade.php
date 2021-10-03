@@ -13,7 +13,7 @@
                 @foreach($events as $event)
                     <div class="col-6">
                         <div class="card mb-3">
-                            <img src="/storage/{{ $event -> image }}" class="bd-placeholder-img card-img-top h-50">
+                            <img src="data:image/png;base64,{{ $event -> image }}" class="bd-placeholder-img card-img-top h-50">
                             <a href="/event/{{$event->id}}">
                                 <h5 class="card-title pl-2 pt-1 mb-0 overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$event->title}}</h5>
                             </a>

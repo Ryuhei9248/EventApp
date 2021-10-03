@@ -19,7 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('username')->unique();
             $table->text('description')->nullable();
             $table->string('url')->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
 
             $table->index('user_id');

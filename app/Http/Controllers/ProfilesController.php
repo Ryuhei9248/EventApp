@@ -49,14 +49,17 @@ class ProfilesController extends Controller
             'image' => ['nullable', 'image'],
         ]);
 
-        if(request('image')){
-            $imagePath = request('image')->store('profiles','public'); 
+        // if(request('image')){
+        //     $imagePath = request('image')->store('profiles','public'); 
 
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
-            $image->save();
+        //     $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
+        //     $image->save();
         
-            $imageArray = ['image' =>$imagePath];
-        }
+        //    $imageArray = ['image' =>$image];
+        // }
+        $image = base64_encode(file_get_contents($request->image->getRealPath()));
+        $imageArray = ['image' =>$image];
+        
         
 
         auth()->user()->profile->update(array_merge(

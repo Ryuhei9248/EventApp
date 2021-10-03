@@ -62,11 +62,12 @@ class EventController extends Controller
         ]);
 
 
-        $imagePath = request('image')->store('events', 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
-        $image->save();
+        // $imagePath = request('image')->store('events', 'public');
+        // $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+        // $image->save();
+        $image = base64_encode(file_get_contents($request->image->getRealPath()));
 
-        $imageArray = ['image' => $imagePath];
+        $imageArray = ['image' => $image];
 
         auth()->user()->events()->create(array_merge(
             $data,
@@ -106,10 +107,12 @@ class EventController extends Controller
         ]);
 
 
-        $imagePath = request('image')->store('events', 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
-        $image->save();
-        $imageArray = ['image' => $imagePath];
+        // $imagePath = request('image')->store('events', 'public');
+        // $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+        // $image->save();
+
+        $image = base64_encode(file_get_contents($request->image->getRealPath()));
+        $imageArray = ['image' => $image];
 
         auth()->user()->events()->update(array_merge(
             $data,

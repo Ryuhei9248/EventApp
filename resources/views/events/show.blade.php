@@ -14,7 +14,7 @@
 
         <div class="col-6">
             <div class="card" style="max-width: 540px;">
-                <img src="/storage/{{$event->image}}" class="w-100 rounded" height="400">
+                <img src="data:image/png;base64,{{$event->image}}" class="w-100 rounded" height="400">
 
                 <div class="card-body">
                     <div class="d-flex">

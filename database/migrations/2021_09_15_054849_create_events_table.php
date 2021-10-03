@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->datetime('start');
             $table->datetime('end');
             $table->string('color');
-            $table->string('image');
+            $table->text('image');
             $table->text('details')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
