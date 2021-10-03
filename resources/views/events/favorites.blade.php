@@ -8,7 +8,7 @@
             <div id="calendar" class="mx-auto"></div>
         </div>
         
-        <div class="col-5 overflow-auto" style="max-height: 500px;">
+        <div class="col-5 overflow-auto" style="max-height: 535px;">
             <div class="row mt-2">
                 @foreach($events as $event)
                     <div class="col-6">
