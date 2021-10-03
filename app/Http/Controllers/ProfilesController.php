@@ -38,7 +38,7 @@ class ProfilesController extends Controller
         return view('profiles.edit',compact('user'));
     }
 
-    public function update(User $user)
+    public function update(User $user, Request $request)
     {
         $this->authorize('update', $user->profile);
 
@@ -57,10 +57,10 @@ class ProfilesController extends Controller
         
         //    $imageArray = ['image' =>$image];
         // }
-        $image = base64_encode(file_get_contents($request->image->getRealPath()));
+        $imagePath = Image::make(file_get_contents($request->image->getRealPath()))->fit(1000,1000);
+        $image = 'data:image/png;base64,'. base64_encode($imagePath->encode('png'));
+
         $imageArray = ['image' =>$image];
-        
-        
 
         auth()->user()->profile->update(array_merge(
             $data,

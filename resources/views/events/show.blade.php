@@ -5,7 +5,7 @@
     <div class="d-flex">  
         <div class="col-3">
             <a href="/profile/{{$event->user->id}}">
-                <img src="{{ $event->user->profile->profileImage()}}" class="rounded-circle img-thumbnail">       
+                <img src="{{ $event->user->profile->image}}" class="rounded-circle img-thumbnail">       
             </a>
             <a href="/profile/{{$event->user->id}}">
                 <h5 class="text-center mt-2">{{$event->user->profile->username}}</h5>
@@ -14,7 +14,7 @@
 
         <div class="col-6">
             <div class="card" style="max-width: 540px;">
-                <img src="data:image/png;base64,{{$event->image}}" class="w-100 rounded" height="400">
+                <img src="{{$event->image}}" class="w-100 rounded" height="400">
 
                 <div class="card-body">
                     <div class="d-flex">

@@ -47,10 +47,9 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {   
 
-        //dd(request()->start);
         $data = request()->validate([
             'title' => 'required',
             'image' => ['image', 'required'],
@@ -65,7 +64,8 @@ class EventController extends Controller
         // $imagePath = request('image')->store('events', 'public');
         // $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
         // $image->save();
-        $image = base64_encode(file_get_contents($request->image->getRealPath()));
+        $imagePath = Image::make(file_get_contents($request->image->getRealPath()))->fit(1200,1200);
+        $image = 'data:image/png;base64,'. base64_encode($imagePath->encode('png'));
 
         $imageArray = ['image' => $image];
 
@@ -92,7 +92,7 @@ class EventController extends Controller
         return view('events.edit',compact('event'));
     }
 
-    public function update(Event $event)
+    public function update(Event $event, Request $request)
     {
         $this->authorize('update', $event);
 
@@ -111,7 +111,8 @@ class EventController extends Controller
         // $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
         // $image->save();
 
-        $image = base64_encode(file_get_contents($request->image->getRealPath()));
+        $imagePath = Image::make(file_get_contents($request->image->getRealPath()))->fit(1200,1200);
+        $image = 'data:image/png;base64,'. base64_encode($imagePath->encode('png'));
         $imageArray = ['image' => $image];
 
         auth()->user()->events()->update(array_merge(
