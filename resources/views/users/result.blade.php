@@ -21,7 +21,7 @@
                             @foreach($profiles as $profile)
                                 <a href="/profile/{{$profile->id}}" class="list-group-item p-2" style="font-size: 2rem; max-height: 70px;">
                                     <div class="d-flex">
-                                        <img src="{{ $profile->profileImage()}}" class="rounded-circle" height="50" width="50">
+                                        <img src="{{ $profile->image}}" class="rounded-circle" height="50" width="50">
                                         <p class="pl-3 overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$profile->username}}</p>
                                     </div>
                                 </a>
@@ -40,7 +40,7 @@
                             @foreach($events as $event)
                                 <div class="list-group-item p-2 overflow-hidden" style="max-height: 90px;">
                                     <div class="d-flex">
-                                        <img src="/storage/{{$event->image}}" width="75" height="75">
+                                        <img src="{{$event->image}}" width="75" height="75">
                                         
                                         <div class="d-flex flex-column">                                        
                                             <a href="/event/{{$event->id}}"><h5 class="pl-2">{{$event->title}}</h5></a>
