@@ -66,10 +66,11 @@
 
 @section('javascript')
 <script>
+    document.querySelector('#users').style.display = 'block';
+    document.querySelector('#events').style.display = 'none';
+    
     document.addEventListener("DOMContentLoaded", function(){
 
-        document.querySelector('#users').style.display = 'block';
-        document.querySelector('#events').style.display = 'none';
 
         document.getElementById('list-user').addEventListener('click',function(){
             document.querySelector('#users').style.display = 'block';
