@@ -5,7 +5,7 @@
     <div class="d-flex">  
         <div class="col-3">
             <a href="/profile/{{$event->user->id}}">
-                <img src="{{ $event->user->profile->image}}" class="rounded-circle img-thumbnail">       
+                <img src="{{ $event->user->profile->image ?? asset('img/icon.png')}}" class="rounded-circle img-thumbnail">       
             </a>
             <a href="/profile/{{$event->user->id}}">
                 <h5 class="text-center mt-2">{{$event->user->profile->username}}</h5>

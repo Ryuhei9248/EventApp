@@ -5,15 +5,15 @@
     
     <div class="row">
         <div class="col-4">
-            <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="user">Users</a>
-                <a class="list-group-item list-group-item-action" id="list-event-list" data-toggle="list" href="#list-event" role="tab" aria-controls="event">Events</a>
+            <div class="list-group list-group-horizontal" id="list-tab" >
+                <button class="list-group-item list-group-item-action active" id="list-user" >Users</button>
+                <button class="list-group-item list-group-item-action" id="list-event"  >Events</button>
             </div>
         </div>
 
         <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-user" role="tabpanel" aria-labelledby="list-user-list">
+                <div id="users">
                     <h5>{{$message_user}}</h5>
                     @if(isset($profiles))
                         <div class="d-flex flex-column overflow-auto mt-4">
@@ -21,7 +21,7 @@
                             @foreach($profiles as $profile)
                                 <a href="/profile/{{$profile->id}}" class="list-group-item p-2" style="font-size: 2rem; max-height: 70px;">
                                     <div class="d-flex">
-                                        <img src="{{ $profile->image}}" class="rounded-circle" height="50" width="50">
+                                        <img src="{{ $profile->image ?? asset('img/icon.png')}}" class="rounded-circle" height="50" width="50">
                                         <p class="pl-3 overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$profile->username}}</p>
                                     </div>
                                 </a>
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="list-event" role="tabpanel" aria-labelledby="list-event-list">
+            <div id="events">
                 <h5>{{$message_event}}</h5>
                 @if(isset($events))
                     <div class="d-flex flex-column overflow-auto mt-4">
@@ -62,4 +62,33 @@
     </div>
 </div>
 
+@endsection
+
+@section('javascript')
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+
+        document.querySelector('#users').style.display = 'block';
+        document.querySelector('#events').style.display = 'none';
+
+        document.getElementById('list-user').addEventListener('click',function(){
+            document.querySelector('#users').style.display = 'block';
+            document.querySelector('#events').style.display = 'none';
+
+            document.querySelector('#list-user').className = "list-group-item list-group-item-action active";
+            document.querySelector('#list-event').className = "list-group-item list-group-item-action";
+        }
+        );
+    
+        document.getElementById('list-event').addEventListener('click',function(){
+            document.querySelector('#users').style.display = 'none';
+            document.querySelector('#events').style.display = 'block';
+
+            document.querySelector('#list-user').className = "list-group-item list-group-item-action";
+            document.querySelector('#list-event').className = "list-group-item list-group-item-action active";
+        }
+        );
+    });
+    
+</script>
 @endsection
