@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/event/{event}/favorite', 'FavoriteController@favorite');
 Route::post('/event/{event}/unfavorite', 'FavoriteController@unfavorite');
 
-Route::post('/profile/{profile}/follow', 'followController@follow');
-Route::post('/profile/{profile}/unfollow', 'followController@unfollow');
+Route::post('/profile/{profile}/follow', 'FollowController@follow');
+Route::post('/profile/{profile}/unfollow', 'FollowController@unfollow');
