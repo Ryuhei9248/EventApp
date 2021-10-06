@@ -10,21 +10,21 @@
         
         <div class="col-5 overflow-auto" style="max-height: 535px;">
             <div class="row mt-2">
-                @foreach($events as $event)
-                    <div class="col-6">
-                        <div class="card mb-3">
-                            <img src="{{ $event -> image }}" class="bd-placeholder-img card-img-top h-50">
-                            <a href="/event/{{$event->id}}">
-                                <h5 class="card-title pl-2 pt-1 mb-0 overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$event->title}}</h5>
-                            </a>
-                            
-                            <a href="/profile/{{$event->user_id}}">
-                                <p class="card-text mb-0 mr-1 text-right">by {{$event->user->profile->username}}</p>
-                            </a>
-                            <p class="card-text text-right mr-1"><small class="text-muted">{{$event->created_at->diffForHumans()}}</small></p>
+                    @foreach($events as $event)
+                        <div class="col-6">
+                            <div class="card mb-3">
+                                <img src="{{ $event -> image }}" class="bd-placeholder-img card-img-top h-50">
+                                <a href="/event/{{$event->id}}">
+                                    <h5 class="card-title pl-2 pt-1 mb-0 overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">{{$event->title}}</h5>
+                                </a>
+                                
+                                <a href="/profile/{{$event->user_id}}">
+                                    <p class="card-text mb-0 mr-1 text-right">by {{$event->user->profile->username}}</p>
+                                </a>
+                                <p class="card-text text-right mr-1"><small class="text-muted">{{$event->created_at->diffForHumans()}}</small></p>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
             </div>
         </div>
     </div>

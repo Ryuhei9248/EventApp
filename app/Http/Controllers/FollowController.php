@@ -21,7 +21,7 @@ class FollowController extends Controller
         $follow = Follow::where('user_id', $request->user_id)->where('profile_id', $profile->id)->first();
         $follow->delete();
 
-       
+    
         return response()->json([]);
     }
 }

@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="d-flex">
+    <h1>Profile</h1>
+    <div class="d-flex" style="margin-top: 30px">
         <div class="col-3 text-center">
             <img src="{{$user->profile->image ?? asset('img/icon.png')}}" class="rounded-circle w-100 mb-2 img-thumbnail">
             <h5>{{$user->profile->username}}</h5>
